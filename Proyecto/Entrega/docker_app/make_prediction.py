@@ -1,7 +1,7 @@
 import pickle
 
 # cargar modelo
-with open('best_model.pkl', 'rb') as file:
+with open('final_pipeline.pkl', 'rb') as file:
     model = pickle.load(file)
 
 labels_dict = {0: 'No moroso', 1: 'Moroso'} # label dict
