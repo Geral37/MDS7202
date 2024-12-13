@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, Form
 from fastapi.responses import FileResponse, JSONResponse
 import pandas as pd
-from make_prediction import make_prediction 
+from docker_app.app.make_prediction import make_prediction 
 
 app = FastAPI()
 

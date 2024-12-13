@@ -4,7 +4,7 @@ import requests
 # Función para enviar CSV
 def predict_csv(file):
     response = requests.post(
-        "http://127.0.0.1:8000/predict_csv/", 
+        "http://fastapi:8000/predict_csv/", 
         files={"file": file}
     )
     with open("output.csv", "wb") as f:
@@ -12,17 +12,111 @@ def predict_csv(file):
     return "output.csv"
 
 # Función para enviar datos manuales
-def predict_manual(sepal_length, sepal_width, petal_length, petal_width):
+def predict_manual(borrow_block_number, borrow_timestamp, wallet_address, first_tx_timestamp, last_tx_timestamp, 
+                   wallet_age, incoming_tx_count, outgoing_tx_count, net_incoming_tx_count, total_gas_paid_eth,
+                   avg_gas_paid_per_tx_eth, risky_tx_count, risky_unique_contract_count, risky_first_tx_timestamp, 
+                   risky_last_tx_timestamp, risky_first_last_tx_timestamp_diff, risky_sum_outgoing_amount_eth,
+                   outgoing_tx_sum_eth, incoming_tx_sum_eth, outgoing_tx_avg_eth, incoming_tx_avg_eth, max_eth_ever,
+                   min_eth_ever, total_balance_eth, risk_factor, total_collateral_eth, total_collateral_avg_eth, 
+                   total_available_borrows_eth, total_available_borrows_avg_eth, avg_weighted_risk_factor, 
+                   risk_factor_above_threshold_daily_count, avg_risk_factor, max_risk_factor, borrow_amount_sum_eth, 
+                   borrow_amount_avg_eth, borrow_count, repay_amount_sum_eth, repay_amount_avg_eth, repay_count, 
+                   borrow_repay_diff_eth, deposit_count, deposit_amount_sum_eth, time_since_first_deposit, 
+                   withdraw_amount_sum_eth, withdraw_deposit_diff_if_positive_eth, liquidation_count, 
+                   time_since_last_liquidated, liquidation_amount_sum_eth, market_adx, market_adxr, market_apo, 
+                   market_aroonosc, market_aroonup, market_atr, market_cci, market_cmo, market_correl, market_dx, 
+                   market_fastk, market_fastd, market_ht_trendmode, market_linearreg_slope, market_macd_macdext, 
+                   market_macd_macdfix, market_macd, market_macdsignal_macdext, market_macdsignal_macdfix, 
+                   market_macdsignal, market_max_drawdown_365d, market_natr, market_plus_di, market_plus_dm, 
+                   market_ppo, market_rocp, market_rocr, unique_borrow_protocol_count, unique_lending_protocol_count):
+
+    # Realiza la solicitud POST al servidor FastAPI
     response = requests.post(
-        "http://127.0.0.1:8000/predict_manual/",
+        "http://fastapi:8000/predict_manual/",
         data={
-            "sepal_length": sepal_length,
-            "sepal_width": sepal_width,
-            "petal_length": petal_length,
-            "petal_width": petal_width
+            "borrow_block_number": borrow_block_number,
+            "borrow_timestamp": borrow_timestamp,
+            "wallet_address": wallet_address,
+            "first_tx_timestamp": first_tx_timestamp,
+            "last_tx_timestamp": last_tx_timestamp,
+            "wallet_age": wallet_age,
+            "incoming_tx_count": incoming_tx_count,
+            "outgoing_tx_count": outgoing_tx_count,
+            "net_incoming_tx_count": net_incoming_tx_count,
+            "total_gas_paid_eth": total_gas_paid_eth,
+            "avg_gas_paid_per_tx_eth": avg_gas_paid_per_tx_eth,
+            "risky_tx_count": risky_tx_count,
+            "risky_unique_contract_count": risky_unique_contract_count,
+            "risky_first_tx_timestamp": risky_first_tx_timestamp,
+            "risky_last_tx_timestamp": risky_last_tx_timestamp,
+            "risky_first_last_tx_timestamp_diff": risky_first_last_tx_timestamp_diff,
+            "risky_sum_outgoing_amount_eth": risky_sum_outgoing_amount_eth,
+            "outgoing_tx_sum_eth": outgoing_tx_sum_eth,
+            "incoming_tx_sum_eth": incoming_tx_sum_eth,
+            "outgoing_tx_avg_eth": outgoing_tx_avg_eth,
+            "incoming_tx_avg_eth": incoming_tx_avg_eth,
+            "max_eth_ever": max_eth_ever,
+            "min_eth_ever": min_eth_ever,
+            "total_balance_eth": total_balance_eth,
+            "risk_factor": risk_factor,
+            "total_collateral_eth": total_collateral_eth,
+            "total_collateral_avg_eth": total_collateral_avg_eth,
+            "total_available_borrows_eth": total_available_borrows_eth,
+            "total_available_borrows_avg_eth": total_available_borrows_avg_eth,
+            "avg_weighted_risk_factor": avg_weighted_risk_factor,
+            "risk_factor_above_threshold_daily_count": risk_factor_above_threshold_daily_count,
+            "avg_risk_factor": avg_risk_factor,
+            "max_risk_factor": max_risk_factor,
+            "borrow_amount_sum_eth": borrow_amount_sum_eth,
+            "borrow_amount_avg_eth": borrow_amount_avg_eth,
+            "borrow_count": borrow_count,
+            "repay_amount_sum_eth": repay_amount_sum_eth,
+            "repay_amount_avg_eth": repay_amount_avg_eth,
+            "repay_count": repay_count,
+            "borrow_repay_diff_eth": borrow_repay_diff_eth,
+            "deposit_count": deposit_count,
+            "deposit_amount_sum_eth": deposit_amount_sum_eth,
+            "time_since_first_deposit": time_since_first_deposit,
+            "withdraw_amount_sum_eth": withdraw_amount_sum_eth,
+            "withdraw_deposit_diff_if_positive_eth": withdraw_deposit_diff_if_positive_eth,
+            "liquidation_count": liquidation_count,
+            "time_since_last_liquidated": time_since_last_liquidated,
+            "liquidation_amount_sum_eth": liquidation_amount_sum_eth,
+            "market_adx": market_adx,
+            "market_adxr": market_adxr,
+            "market_apo": market_apo,
+            "market_aroonosc": market_aroonosc,
+            "market_aroonup": market_aroonup,
+            "market_atr": market_atr,
+            "market_cci": market_cci,
+            "market_cmo": market_cmo,
+            "market_correl": market_correl,
+            "market_dx": market_dx,
+            "market_fastk": market_fastk,
+            "market_fastd": market_fastd,
+            "market_ht_trendmode": market_ht_trendmode,
+            "market_linearreg_slope": market_linearreg_slope,
+            "market_macd_macdext": market_macd_macdext,
+            "market_macd_macdfix": market_macd_macdfix,
+            "market_macd": market_macd,
+            "market_macdsignal_macdext": market_macdsignal_macdext,
+            "market_macdsignal_macdfix": market_macdsignal_macdfix,
+            "market_macdsignal": market_macdsignal,
+            "market_max_drawdown_365d": market_max_drawdown_365d,
+            "market_natr": market_natr,
+            "market_plus_di": market_plus_di,
+            "market_plus_dm": market_plus_dm,
+            "market_ppo": market_ppo,
+            "market_rocp": market_rocp,
+            "market_rocr": market_rocr,
+            "unique_borrow_protocol_count": unique_borrow_protocol_count,
+            "unique_lending_protocol_count": unique_lending_protocol_count
         }
     )
+    
+    # Retorna la predicción
     return response.json()["prediction"]
+
 
 # Interfaz de Gradio
 with gr.Blocks() as demo:
