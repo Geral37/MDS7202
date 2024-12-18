@@ -7,7 +7,7 @@ from airflow.operators.bash import BashOperator
 from airflow.utils.dates import days_ago
 
 # IMPORTANTE: Los estudiantes deben implementar las funciones necesarias en un archivo aparte.
-# from functions_exam import clean_data, check_and_join_data, inference
+from functions_exam import clean_data, check_and_join_data, inference, preprocess
 
 args = {
     'owner': 'MDS7202',
