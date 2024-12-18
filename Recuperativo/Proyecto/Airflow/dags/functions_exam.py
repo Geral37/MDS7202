@@ -35,7 +35,7 @@ def clean_data(data_name, output_file="/root/airflow/data/data_sucia_limpia.csv"
 
     # 2. Convertir 'Max_Speed' de mph a km/h (1 mph = 1.60934 km/h)
     if 'Max_Speed' in data.columns:
-        data['Max_Speed'] = data['Max_Speed'] * 1.60934
+        data['Max_Speed'] = data['Max_Speed'] / 0.621371
 
     # 3. Renombrar las columnas
     rename_map = {
